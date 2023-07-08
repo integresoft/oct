@@ -1,0 +1,127 @@
+﻿@page
+@model MainstreamDOCSdotweb.Pages.Docs.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<style>
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Could be more or less, depending on screen size */
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .main {
+        margin: 0 auto;
+        width: 50%;
+    }
+
+    textarea {
+        width: 100%;
+        padding: 10px;
+        height: 100em;
+    }
+</style>
+<body>
+    <form method="post">
+        <input type="text" id="myBtn" placeholder="@Html.DisplayNameFor(model => model.Properties.Title)">
+        <button value="Create" class="btn btn-primary">Save</button>
+    </form>
+
+    <hr>
+    <div class="main">
+        <textarea name="" id="" cols="30" rows="10" style="resize: none;" autofocus>@Html.DisplayNameFor(model => model.Properties.Document)</textarea>
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <form method="post">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Name your document</p>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Properties.Title" class="control-label"></label>
+                    <input asp-for="Properties.Title" class="form-control" />
+                    <span asp-validation-for="Properties.Title" class="text-danger"></span>
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </div>
+
+        </form>
+
+
+    </div>
+    <script>
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+        btn.onmousemove = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    
+
+
+
+
+
+    <div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+</body>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

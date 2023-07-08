@@ -1,0 +1,47 @@
+﻿@page
+@model MainstreamDOCSdotweb.Pages.Docs.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].Date)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Properties) {
+        <tr>
+            <td>
+                <a asp-route-id="@item.Id" asp-page="./Edit">
+                        @Html.DisplayFor(modelItem => item.Title)
+                </a>
+                
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            
+            <td>
+                
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
